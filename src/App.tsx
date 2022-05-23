@@ -1,9 +1,9 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
 import { Instruments } from './components/Instruments/Instruments';
-import { NewInstrument } from './components/Instruments/NewInstrument/NewInstrument';
+import { NewInstrument } from './components/NewInstrument/NewInstrument';
 import { EditInstrument } from './components/Instruments/Instrument/EditInstrument/EditInstrument';
 import { Chart } from './components/Instruments/Instrument/ChartInstrument/Chart';
 import { Login } from './components/Login/Login';
@@ -13,23 +13,37 @@ import { Instrument } from './components/Instruments/Instrument/Instrument';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="app">       
-          <Routes>
-            <Route path='login' element={<Login />} />
-            <Route path='/' element={<Home />}>
-              <Route path='profile' element={<Profile />} />
-              <Route path='instruments' element={<Instruments />}>
-                <Route path='new' element={<NewInstrument />} />
-                <Route path=':id' element={<Instrument />} >
-                  <Route path='edit' element={<EditInstrument />} />
-                  <Route path='chart' element={<Chart />} />
-                </Route>
-              </Route>
-            </Route>
-          </Routes>
-      </div>
-    </BrowserRouter>
+    <>
+      <header className='header' />
+      <nav className='nav'>
+        <ul>
+          <li>
+            <Link to="/" >Home</Link>
+          </li>
+          <li>
+            <Link to="/profile" >Profile</Link>
+          </li>
+          <li>
+            <Link to="/instruments" >Instruments</Link>
+          </li>
+          <li>
+            <Link to="/instruments/new" >New</Link>
+          </li>
+          <li>
+            <Link to="/instruments/1" >Instrument</Link>
+          </li>
+          <li>
+            <Link to="/instruments/1/edit" >Edit</Link>
+          </li>
+          <li>
+            <Link to="/instruments/1/chart" >Chart</Link>
+          </li>
+        </ul>
+      </nav>
+      <main className='content'>
+        <Outlet />
+      </main>
+    </>
   );
 }
 

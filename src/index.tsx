@@ -3,13 +3,37 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Login } from './components/Login/Login';
+import { Home } from './components/Home/Home';
+import { Profile } from './components/Profile/Profile';
+import { Instruments } from './components/Instruments/Instruments';
+import { NewInstrument } from './components/NewInstrument/NewInstrument';
+import { EditInstrument } from './components/Instruments/Instrument/EditInstrument/EditInstrument';
+import { Chart } from './components/Instruments/Instrument/ChartInstrument/Chart';
+import { Instrument } from './components/Instruments/Instrument/Instrument';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <div className="app">
+        <Routes>
+          <Route path='login' element={<Login />} />
+          <Route element={<App/>} >
+            <Route path='/' element={<Home />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='instruments' element={<Instruments />} />
+            <Route path='instruments/new' element={<NewInstrument />} />
+            <Route path='instruments/:id' element={<Instrument />} />
+            <Route path='instruments/:id/edit' element={<EditInstrument />} />
+            <Route path='instruments/:id/chart' element={<Chart />} />
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
