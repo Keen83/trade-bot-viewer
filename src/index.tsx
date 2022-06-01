@@ -12,12 +12,15 @@ import { NewInstrument } from './components/NewInstrument/NewInstrument';
 import { EditInstrument } from './components/Instruments/Instrument/EditInstrument/EditInstrument';
 import { Chart } from './components/Instruments/Instrument/ChartInstrument/Chart';
 import { Instrument } from './components/Instruments/Instrument/Instrument';
+import { Provider } from 'react-redux';
+import store from './redux/redux-store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
+  );
+  root.render(
+    <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <div className="app">
         <Routes>
@@ -34,6 +37,7 @@ root.render(
         </Routes>
       </div>
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
