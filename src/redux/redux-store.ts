@@ -1,7 +1,7 @@
 import thunkMiddleware from "redux-thunk"
 import { combineReducers } from "redux"
 import { configureStore } from '@reduxjs/toolkit'
-import { authReducer } from "../components/Auth/GoogleSignin/authRedusers";
+import { authReducer } from "../components/Auth/GoogleSignin/authReducers";
 
 
 let reducer = combineReducers({

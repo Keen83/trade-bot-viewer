@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import React from "react";
-import { SET_USER_DATA } from "./authRedusers";
+import { SET_USER_DATA } from "./authReducers";
 
 
 
