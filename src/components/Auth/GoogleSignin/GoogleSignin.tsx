@@ -1,5 +1,7 @@
 // import { Button } from "@material-ui/core"
 import { useCallback, useEffect, useState } from "react"
+import { authThunkCreator } from "./authActions";
+
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 type IUser = {
@@ -18,6 +20,7 @@ export default function GoogleSignin() {
     if (!res.clientId || !res.credential) return;
       // Implement your login mutations and logic here.
       // Set cookies, call your backend, etc. 
+      authThunkCreator()
       console.log(res);
       
       // TODO: retrieve user data
