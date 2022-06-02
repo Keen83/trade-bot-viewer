@@ -1,5 +1,9 @@
 // import { Button } from "@material-ui/core"
 import { useCallback, useEffect, useState } from "react"
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/storeTypes";
+import { authThunkCreator } from "./authActions";
+
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 type IUser = {
@@ -13,11 +17,13 @@ type IUser = {
 export default function GoogleSignin() {
   const [gsiScriptLoaded, setGsiScriptLoaded] = useState(false)
   const [user, setUser] = useState<IUser>({_id: undefined})
+  const dispatch: AppDispatch = useDispatch()
   
   const handleGoogleSignIn = useCallback((res: CredentialResponse) => {
     if (!res.clientId || !res.credential) return;
       // Implement your login mutations and logic here.
       // Set cookies, call your backend, etc. 
+      dispatch(authThunkCreator())
       console.log(res);
       
       // TODO: retrieve user data
