@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
-import { Instruments } from './components/Instruments/Instruments';
-import { NewInstrument } from './components/NewInstrument/NewInstrument';
-import { EditInstrument } from './components/Instruments/Instrument/EditInstrument/EditInstrument';
-import { Chart } from './components/Instruments/Instrument/ChartInstrument/Chart';
-import { Login } from './components/Login/Login';
-import { Profile } from './components/Profile/Profile';
-import { Home } from './components/Home/Home';
-import { Instrument } from './components/Instruments/Instrument/Instrument';
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { useStore } from 'react-redux';
 
 function App() {
+  let navigate = useNavigate()
+  let store = useStore()
+  let state: any = store.getState()
+  useEffect(()=>{
+      if(!state.auth.isAuthenticated) {
+          navigate("/login")
+      }
+  },[state.auth.isAuthenticated,navigate])
   return (
     <>
       <header className='header' />

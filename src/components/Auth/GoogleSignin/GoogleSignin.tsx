@@ -1,6 +1,7 @@
 // import { Button } from "@material-ui/core"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
+import { Navigate, Route, useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../../redux/storeTypes";
 import { authThunkCreator } from "./authActions";
 
@@ -18,24 +19,26 @@ export default function GoogleSignin() {
   const [gsiScriptLoaded, setGsiScriptLoaded] = useState(false)
   const [user, setUser] = useState<IUser>({_id: undefined})
   const dispatch: AppDispatch = useDispatch()
+  let navigate = useNavigate()
   
   const handleGoogleSignIn = useCallback((res: CredentialResponse) => {
     if (!res.clientId || !res.credential) return;
-      // Implement your login mutations and logic here.
-      // Set cookies, call your backend, etc. 
-      dispatch(authThunkCreator())
-      console.log(res);
-      
-      // TODO: retrieve user data
-      setUser({_id: 1});
-    }, []);
-
+    // Implement your login mutations and logic here.
+    // Set cookies, call your backend, etc. 
+    dispatch(authThunkCreator())
+    navigate("/")
+    console.log(res);
+    
+    // TODO: retrieve user data
+    setUser({_id: 1});
+  }, []);
+  
   useEffect(() => {
     if (user?._id || gsiScriptLoaded) return
-
+    
     const initializeGsi = () => {
       if (!window.google || gsiScriptLoaded) return
-
+      
       setGsiScriptLoaded(true)
       window.google.accounts.id.initialize({
         client_id: GOOGLE_CLIENT_ID || "",
@@ -49,19 +52,19 @@ export default function GoogleSignin() {
     script.async = true
     script.id = "google-client-script"
     document.querySelector("body")?.appendChild(script)
-
+    
     return () => {
       // Cleanup function that runs when component unmounts
       window.google?.accounts.id.cancel()
       document.getElementById("google-client-script")?.remove()
     }
   }, [handleGoogleSignIn, gsiScriptLoaded, user?._id])
-
+  
   return <div className={"g_id_signin"} 
-    data-type="standard "
-    data-size="large"
-    data-theme="outline"
-    data-text="sign_in_with"
-    data-shape="rectangular"
-    data-logo_alignment="center" />
+  data-type="standard "
+  data-size="large"
+  data-theme="outline"
+  data-text="sign_in_with"
+  data-shape="rectangular"
+  data-logo_alignment="center" />
 }
