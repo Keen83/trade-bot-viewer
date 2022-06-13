@@ -10,7 +10,8 @@ let initialState = {
     firstName: undefined,
     secondName: undefined,
     email: undefined,
-    isAuthenticated: false
+    credential:undefined,
+    isAuthenticated: false,
 }
 
 export function authReducer(state = initialState, action: PayloadAction<AuthState>) {
@@ -22,6 +23,7 @@ export function authReducer(state = initialState, action: PayloadAction<AuthStat
                 secondName: action.payload,
                 email: action.payload,
                 isAuthenticated: action.payload,
+                credential: action.payload,
             }       
         default:
             return state

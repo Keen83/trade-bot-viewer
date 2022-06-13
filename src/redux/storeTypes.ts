@@ -6,6 +6,7 @@ export type AuthState = {
     firstName: string,
     secondName: string,
     email: string,
+    credential: string
 }
 
 export type State = {
