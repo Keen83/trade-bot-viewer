@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { Navigate, Route, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import { AppDispatch } from "../../../redux/storeTypes";
 import { authThunkCreator } from "./authActions";
 
@@ -24,10 +25,12 @@ export default function GoogleSignin() {
   const handleGoogleSignIn = useCallback((res: CredentialResponse) => {
     if (!res.clientId || !res.credential) return;
     // Implement your login mutations and logic here.
-    // Set cookies, call your backend, etc. 
+    // Set cookies, call your backend, etc.
+    let token: any = res.credential 
+    let decoded = jwt_decode(token);
     dispatch(authThunkCreator())
     navigate("/")
-    console.log(res);
+    console.log(decoded);
     
     // TODO: retrieve user data
     setUser({_id: 1});
