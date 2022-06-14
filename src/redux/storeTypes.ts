@@ -2,7 +2,11 @@ import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 export type AuthState = {
-    isAuthenticated: boolean
+    isAuthenticated: boolean,
+    firstName: string,
+    secondName: string,
+    email: string,
+    credential: string
 }
 
 export type State = {
