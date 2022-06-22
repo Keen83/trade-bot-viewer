@@ -33,7 +33,7 @@ main {
   .app {
       grid-template-areas: "header header" 
                            "side main";
-      grid-template-rows: 3fr 10fr ;
+      grid-template-rows: 1fr 10fr ;
       grid-template-columns: 10em 1fr ;
   }
 }

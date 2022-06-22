@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Login } from './components/Login/Login';
-import { Home } from './components/Home/Home';
+import Home from './components/Home/Home';
 import { Profile } from './components/Profile/Profile';
 import { Instruments } from './components/Instruments/Instruments';
 import { NewInstrument } from './components/NewInstrument/NewInstrument';
@@ -14,6 +14,7 @@ import { Chart } from './components/Instruments/Instrument/ChartInstrument/Chart
 import { Instrument } from './components/Instruments/Instrument/Instrument';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
