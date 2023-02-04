@@ -1,40 +1,43 @@
 .app {
   display: grid;
   grid-template-areas: "header" 
-                       "main";
+  "main";
   grid-gap: 10px;
-
+  
 }
 
 nav {
   grid-area: side;
-  background-color: #AAAAAA ;
-
+  background-color: white;
+  border-radius: 5px;
+  border: 0.5px solid black;
 }
 
 header {
   grid-area: header;
   min-width: 100%;
-  min-height: 50px;
-  background-color: #bbb;
-
+  background-color: white;
+  border-radius: 5px;
+  border: 0.5px solid black;
 }
 
 main {
   grid-area: main;
-
+  border-radius: 5px;
+  border: 0.5px solid black;  
   min-width: 100%;
   min-height: 100px;
-  background-color: #ccc;
-
+  background-color: white;
+  border-radius: 5px;
 }
 
 @media (min-width: 601px) {
   .app {
       grid-template-areas: "header header" 
                            "side main";
-      grid-template-rows: 3fr 10fr ;
+      grid-template-rows: 40px 10fr ;
       grid-template-columns: 10em 1fr ;
+      margin: 10px;
   }
 }
 
@@ -42,9 +45,10 @@ main {
   .app {
       grid-template-areas: "header" 
                            "main";
-      grid-template-rows: 10fr ;
+      grid-template-rows: 40px 10fr ;
       grid-template-columns:  1fr ;
       grid-gap: 10px
+      
   }
   nav{
     display: none;

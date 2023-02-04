@@ -1,10 +1,12 @@
 // import { Button } from "@material-ui/core"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
-import { Navigate, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { AppDispatch } from "../../../redux/storeTypes";
 import { authThunkCreator } from "./authActions";
+
+
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -22,13 +24,14 @@ export default function GoogleSignin() {
   const dispatch: AppDispatch = useDispatch()
   let navigate = useNavigate()
 
-  const handleGoogleSignIn = useCallback((res: CredentialResponse) => {
+  const handleGoogleSignIn = useCallback(async (res: CredentialResponse) => {
     if (!res.clientId || !res.credential) return;
     // Implement your login mutations and logic here.
     // Set cookies, call your backend, etc.
     let token: any = res.credential
     let decoded: any = jwt_decode(token);
     dispatch(authThunkCreator(decoded.given_name, decoded.family_name, decoded.email, res.credential))
+
     let givenName = decoded.given_name
     let email = decoded.email
     let familyName = decoded.family_name
