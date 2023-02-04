@@ -14,7 +14,7 @@ function App() {
       }
   },[state.auth.isAuthenticated,navigate])
   return (
-    <>
+    < >
       <header className='header' />
       <nav className='nav'>
         <ul>

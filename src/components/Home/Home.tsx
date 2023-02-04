@@ -36,14 +36,14 @@ export default function Home() {
                         </div>
                         <div className={classes.instrumentPanel}>
                             <div>
-                                Last order
+                                Last order: 0.000026 * 57682.874857 = 1,499754746282
                             </div>
-                            New orders to create
+                            New orders to create:
                             <div >
-                                buy: 0920
+                                buy: 0.000026 * 57682.874857 = 1,499754746282
                             </div>
                             <div >
-                                sell: 7718980984
+                                sell: 0.000026 * 57682.874857 = 1,499754746282
                             </div>
                         </div>
 
